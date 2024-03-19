@@ -14,6 +14,7 @@ import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
 import edu.wpi.first.wpilibj2.command.button.RobotModeTriggers;
 import edu.wpi.first.wpilibj2.command.button.Trigger;
 import frc.robot.Constants.OperatorConstants;
+import frc.robot.commands.AmpAuto;
 import frc.robot.commands.DriveDistance;
 import frc.robot.commands.ScoreSpeakerAndLeave;
 import frc.robot.subsystems.Climber;
@@ -38,6 +39,7 @@ public class RobotContainer {
 
   private final Command m_ScoreSpeakerAndLeaveCommand = new ScoreSpeakerAndLeave(m_driveBase, m_Shooter);
   private final Command m_DriveDistanceCommand = new DriveDistance(36, 0.25, m_driveBase);
+  private final Command m_AmpAutoCommand = new AmpAuto(m_driveBase, m_claw);
 
   /* ---Controllers--- */
 
@@ -55,6 +57,7 @@ public class RobotContainer {
       public static final String DriveDistance = "Go Backwards";
       public static final String ScoreSpeakerAndLeave = "Score Speaker and Leave";
       public static final String Score = "Score Speaker";
+      public static final String AmpAuto = "Drive and Score Amp";
 
       private String Selected;
 
@@ -71,6 +74,7 @@ public class RobotContainer {
   AutoSelector.addOption("Score Speaker and Leave", ScoreSpeakerAndLeave);
   AutoSelector.addOption("Go Backwards", DriveDistance);
   AutoSelector.addOption("Score Speaker", Score);
+  AutoSelector.addOption("Drive and Score Amp", AmpAuto);
 
   Autos.add("Auto Selector", AutoSelector).withPosition(2, 0).withSize(6, 4);
  }
@@ -143,6 +147,10 @@ if(AutoSelector.getSelected() == DriveDistance){
 else if(AutoSelector.getSelected() == ScoreSpeakerAndLeave){
 
   return m_ScoreSpeakerAndLeaveCommand;
+} 
+else if(AutoSelector.getSelected() == AmpAuto){
+
+  return m_AmpAutoCommand;
 } 
 
 else {

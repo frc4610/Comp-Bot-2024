@@ -89,7 +89,7 @@ public class DriveBase extends SubsystemBase {
 
   public void curvatureDrive(){
     m_drive.curvatureDrive(
-      MathUtil.applyDeadband(m_driverControl.getLeftY()*-1, 0.05),
+      MathUtil.applyDeadband(m_driverControl.getLeftY(), 0.05),
       MathUtil.applyDeadband(m_driverControl.getRightX(), 0.05), 
       m_driverControl.getHID().getRightBumper());
 

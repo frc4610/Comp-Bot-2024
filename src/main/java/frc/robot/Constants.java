@@ -47,6 +47,8 @@ public final class Constants {
 
     // Climber Motor Ids
     public static final int kClimbMotorId = 40;
+
+    public static final int kLedPort = 0;
   }
 
   public final class DriveBaseConstants {
@@ -58,20 +60,20 @@ public final class Constants {
     public static final double kLinearDistanceConversionFactor = 6*Math.PI;
 
     /* Turn PID Constants */
-    public static final double kTurnP = 1;
-    public static final double kTurnI = 0;
-    public static final double kTurnD = 0;
+    public static final double kTurnP = 0.05;
+    public static final double kTurnI = 0.05;
+    public static final double kTurnD = 0.05;
 
     /* Gyro Turn Command Constants */
     public static final double kTurnToleranceDeg = 5;
-    public static final double kTurnRateToleranceDegPerS = 10; // degrees per second
+    public static final double kTurnRateToleranceDegPerS = 5; // degrees per second
   }
   public final class ShooterConstants {
     /*  Shooter Constants */
 
     //  Edit based on robot funtionality or driveteam preference
     //  Edit at Mentors Discretion
-
+    
     // Stop Motors 
     public static final int kStopMotors = 0;
 

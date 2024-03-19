@@ -47,7 +47,7 @@ public class Shooter extends SubsystemBase {
    public void scoreSpeaker(){
     //  Set motors to the speed constant for speaker
     topMotor.set(Constants.ShooterConstants.kShootSpeaker);
-    Timer.delay(0.250);
+    Timer.delay(1.0);
     bottomMotor.set(Constants.ShooterConstants.kShootSpeaker);
    }
    public void stopShooter(){

@@ -6,6 +6,7 @@ package frc.robot.subsystems;
 
 import com.ctre.phoenix6.controls.DifferentialFollower;
 import com.ctre.phoenix6.controls.Follower;
+import com.ctre.phoenix6.controls.StrictFollower;
 import com.ctre.phoenix6.hardware.Pigeon2;
 import com.ctre.phoenix6.hardware.TalonFX;
 
@@ -59,16 +60,21 @@ public class DriveBase extends SubsystemBase {
 
     // Motor Control
     rightFrontMotor.setInverted(false);
+    rightBackMotor.setInverted(false);
     leftFrontMotor.setInverted(true);
+    leftBackMotor.setInverted(true);
+
+    // Motor Limit
+  
 
     // Encoder Config
     m_rightEncoder.setDistancePerPulse(Constants.DriveBaseConstants.kLinearDistanceConversionFactor/2048);
     m_lefEncoder.setDistancePerPulse(Constants.DriveBaseConstants.kLinearDistanceConversionFactor/2048);
 
-    rightBackMotor.setControl(new Follower(Constants.DeviceIds.kFrontRightId, false));
-    leftBackMotor.setControl(new Follower(Constants.DeviceIds.kFrontLeftId, false));
+    rightFrontMotor.setControl(new StrictFollower(Constants.DeviceIds.kBackRightId));
+    leftFrontMotor.setControl(new StrictFollower(Constants.DeviceIds.kBackLeftId));
 
-    m_drive = new DifferentialDrive(leftFrontMotor, rightFrontMotor);
+    m_drive = new DifferentialDrive(leftBackMotor, rightBackMotor);
 
     /*  Shuffleboard Tab Setup */
 
@@ -89,7 +95,7 @@ public class DriveBase extends SubsystemBase {
 
   public void curvatureDrive(){
     m_drive.curvatureDrive(
-      MathUtil.applyDeadband(m_driverControl.getLeftY()*-1, 0.05),
+      MathUtil.applyDeadband(m_driverControl.getLeftY(), 0.05),
       MathUtil.applyDeadband(m_driverControl.getRightX(), 0.05), 
       m_driverControl.getHID().getRightBumper());
 

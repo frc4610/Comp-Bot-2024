@@ -76,7 +76,7 @@ public final class Constants {
     public static final int kStopMotors = 0;
 
    //  Set Shoot Constant
-    public static final double kShootSpeaker = -0.75;
+    public static final double kShootSpeaker = -0.85;
 
     //  Set intake Constant
     public static final double kShooterIntake = 0.3;

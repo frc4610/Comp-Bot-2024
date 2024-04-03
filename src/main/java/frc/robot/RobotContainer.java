@@ -5,11 +5,13 @@
 package frc.robot;
 
 
+import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj.shuffleboard.Shuffleboard;
 import edu.wpi.first.wpilibj.shuffleboard.ShuffleboardTab;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.Commands;
+import edu.wpi.first.wpilibj2.command.WaitCommand;
 import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
 import edu.wpi.first.wpilibj2.command.button.RobotModeTriggers;
 import edu.wpi.first.wpilibj2.command.button.Trigger;
@@ -37,13 +39,13 @@ public class RobotContainer {
   private final Claw m_claw = new Claw();
 
   private final Command m_ScoreSpeakerAndLeaveCommand = new ScoreSpeakerAndLeave(m_driveBase, m_Shooter);
-  private final Command m_DriveDistanceCommand = new DriveDistance(36, 0.25, m_driveBase);
+  private final Command m_DriveDistanceCommand = new DriveDistance(36, 0.5, m_driveBase);
 
   /* ---Controllers--- */
 
   // Driver Controller
-  private final CommandXboxController m_driverController =
-      new CommandXboxController(OperatorConstants.kDriverControllerPort);
+  private final XboxController m_driverController =
+      new XboxController(OperatorConstants.kDriverControllerPort);
 
   // Operator Controller
   private final CommandXboxController m_operatorController = 
@@ -147,7 +149,7 @@ else if(AutoSelector.getSelected() == ScoreSpeakerAndLeave){
 
 else {
   
-  return Commands.runOnce(() -> m_Shooter.scoreSpeaker(), m_Shooter);
+  return Commands.sequence(new WaitCommand(5),Commands.runOnce(() -> {m_Shooter.scoreSpeakerAuto();}, m_Shooter));
 }
 }
 }

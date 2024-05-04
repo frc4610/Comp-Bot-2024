@@ -4,11 +4,9 @@
 
 package frc.robot.subsystems;
 
-import com.ctre.phoenix6.controls.Follower;
 import com.ctre.phoenix6.hardware.TalonFX;
 
 import edu.wpi.first.wpilibj.Timer;
-import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
 import frc.robot.Constants;
@@ -60,4 +58,10 @@ public class Shooter extends SubsystemBase {
     topMotor.set(Constants.ShooterConstants.kShooterIntake);
     bottomMotor.set(Constants.ShooterConstants.kShooterIntake);
     }
+      public void scoreSpeakerAuto(){
+    //  Set motors to the speed constant for speaker
+    topMotor.set(-0.95);
+    Timer.delay(0.75);
+    bottomMotor.set(-1);
+   }
 }

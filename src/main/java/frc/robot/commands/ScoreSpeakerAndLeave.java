@@ -28,6 +28,6 @@ public class ScoreSpeakerAndLeave extends SequentialCommandGroup {
     Commands.runOnce( () -> {m_DriveBase.resetEncoders(); m_DriveBase.resetGyro();}),
     Commands.runOnce( () -> {m_Shooter.scoreSpeaker();}, m_Shooter), 
     new WaitCommand(2),
-    new DriveDistance(48, -0.5, m_DriveBase));
+    new DriveDistance(48, 0.5, m_DriveBase));
   }
 }
